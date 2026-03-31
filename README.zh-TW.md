@@ -6,7 +6,7 @@
 
 大部分的 Claude Code 設定，每次開新 session 就忘光光。這個框架給 Claude 一套結構化的持久記憶 — 讓它記住你是誰、你在做什麼、什麼方法有用、什麼該避免。跨 session 都記得。
 
-由 [@kanisleo328](https://www.threads.net/@kanisleo328) 開發 — 用 AI 跑一人公司 8 個月的實戰系統。這就是 [LeoAIdo](https://leoaido.com) 背後的真實架構。
+由 [@kanisleo328](https://www.threads.net/@kanisleo328) 開發 — 用 AI 跑一人公司的實戰系統。這就是 [LeoAIdo](https://leoaido.com) 背後的真實架構。
 
 ---
 
@@ -146,7 +146,7 @@ cp claude-memory-framework/templates/* ~/.claude/projects/-/memory/
 ## 實戰成果
 
 這個系統驅動 [@kanisleo328](https://www.instagram.com/kanisleo328)：
-- 零程式基礎，8 個月做出 3 個產品並持續維護
+- 零程式基礎，做出 3 個產品並持續維護
 - 所有開發、部署、專案管理都透過帶記憶的 Claude Code 完成
 - 單篇貼文 19,000+ 瀏覽
 - 成功接到第一個付費客戶

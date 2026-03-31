@@ -6,7 +6,7 @@
 
 Most Claude Code setups forget everything between sessions. This framework gives Claude structured, persistent memory — so it knows who you are, what you've built, what works, and what doesn't. Across every session.
 
-Built by [@kanisleo328](https://www.threads.net/@kanisleo328) — running a one-person company with an AI team for 8 months. This is the actual system behind [LeoAIdo](https://leoaido.com).
+Built by [@kanisleo328](https://www.threads.net/@kanisleo328) — running a one-person company with an AI team. This is the actual system behind [LeoAIdo](https://leoaido.com).
 
 ---
 
@@ -267,7 +267,7 @@ The framework is designed to be extended. Common additions:
 ## Real Results
 
 This system powers [@kanisleo328](https://www.instagram.com/kanisleo328):
-- 3 products built and maintained in 8 months with zero coding background
+- 3 products built and maintained with zero coding background
 - All development, deployment, and project management handled through Claude Code with persistent memory
 - 19,000+ views on a single post driven by content created with this workflow
 - First paying client acquired and managed through AI-powered workflow
