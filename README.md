@@ -1,5 +1,7 @@
 # Claude Memory Framework
 
+[繁體中文](README.zh-TW.md) | English
+
 **A persistent memory system for Claude Code that turns it into your AI operating system.**
 
 Most Claude Code setups forget everything between sessions. This framework gives Claude structured, persistent memory — so it knows who you are, what you've built, what works, and what doesn't. Across every session.

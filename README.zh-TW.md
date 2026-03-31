@@ -1,5 +1,7 @@
 # Claude Memory Framework
 
+繁體中文 | [English](README.md)
+
 **讓 Claude Code 擁有持久記憶，變成你的 AI 作業系統。**
 
 大部分的 Claude Code 設定，每次開新 session 就忘光光。這個框架給 Claude 一套結構化的持久記憶 — 讓它記住你是誰、你在做什麼、什麼方法有用、什麼該避免。跨 session 都記得。
