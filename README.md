@@ -2,69 +2,63 @@
 
 [繁體中文](README.zh-TW.md) | English
 
-**A persistent memory system for Claude Code that turns it into your AI operating system.**
+**Structured templates for Claude Code's auto memory system.**
 
-Most Claude Code setups forget everything between sessions. This framework gives Claude structured, persistent memory — so it knows who you are, what you've built, what works, and what doesn't. Across every session.
+Claude Code already has persistent memory — `CLAUDE.md` for instructions, auto memory for AI-written notes, and session resume. What it doesn't have is a **structure** for that memory.
 
-Built by [@kanisleo328](https://www.threads.net/@kanisleo328) — running a one-person company with an AI team. This is the actual system behind [LeoAIdo](https://leoaido.com).
+The built-in auto memory lets Claude write whatever it wants, however it wants. This framework gives it a defined taxonomy: **User, Feedback, Project, Reference** — with YAML frontmatter, an index pattern, and templates you can customize.
+
+Built by [@kanisleo328](https://www.threads.net/@kanisleo328). This is the system behind [LeoAIdo](https://leoaido.com).
 
 ---
 
-## What Makes This Different
+## The Problem
 
-Every other Claude Code memory repo focuses on **coding assistance**. This one treats Claude as a **long-term collaborator** — not just a code generator.
+Claude Code's auto memory is powerful but unstructured. Claude decides what to save and how to organize it. Over time, you get a pile of notes with no consistent format, no categorization, and no way to ensure the important stuff is always loaded.
 
-| Feature | Others | This Framework |
-|---------|--------|----------------|
-| Session persistence | Some | ✅ Full |
-| Code-level memory | ✅ | ✅ |
-| Identity & persona | ❌ | ✅ AI knows who it is |
-| User profile & preferences | ❌ | ✅ Adapts to you |
-| Feedback-driven evolution | ❌ | ✅ Learns from corrections |
-| Project & business context | ❌ | ✅ Goals, decisions, progress |
-| Tool & service registry | ❌ | ✅ Remembers your stack |
-| Indexed & categorized | ❌ | ✅ Fast lookup, no bloat |
+Common issues:
+- Claude remembers code conventions but forgets your business goals
+- Memory files grow without clear structure — hard to review or edit
+- No standard way to capture corrections so the same mistake doesn't repeat
+- When you start a new project, you have to rebuild context from scratch
+
+---
+
+## What This Framework Does
+
+It provides **templates and conventions** on top of Claude Code's native memory system.
+
+| What | Native Auto Memory | + This Framework |
+|------|-------------------|------------------|
+| Storage | `~/.claude/projects/-/memory/` | Same location |
+| Index | MEMORY.md (AI-written) | MEMORY.md (human-curated) |
+| Structure | Free-form, AI decides | 4 defined categories + YAML frontmatter |
+| What gets saved | Code patterns, debug notes | + User profile, feedback, business context, tool registry |
+| Who controls it | Mostly AI | Mostly you |
+| Portable | No | Yes — clone templates to any project |
+| Feedback loop | Implicit | Explicit — Why + How to Apply pattern |
+
+This is **not a replacement** for Claude Code's memory. It's a layer of organization on top of it.
 
 ---
 
 ## Use Cases
 
-This framework works for anyone using Claude Code beyond one-off tasks:
+Works for anyone who wants more control over what Claude remembers:
 
-- **Solo founders** — Claude remembers your products, clients, revenue goals, and priorities
-- **Developers** — Claude remembers your codebase conventions, past debugging sessions, and architecture decisions
-- **Content creators** — Claude remembers your brand voice, audience, publishing schedule, and platform rules
-- **Freelancers** — Claude remembers each client's context, deliverables, and communication preferences
-- **Researchers** — Claude remembers your sources, methodology, findings, and open questions
-- **Teams** — Shared memory files let multiple people onboard Claude with the same context
-
----
-
-## Architecture
-
-```
-~/.claude/
-├── CLAUDE.md                          # Boot instructions — AI reads this first
-└── projects/-/memory/
-    ├── MEMORY.md                      # Index file — links to all memories
-    ├── user_profile.md                # Who you are
-    ├── feedback_communication.md      # How to talk to you
-    ├── feedback_quality.md            # Quality standards
-    ├── feedback_*.md                  # More behavioral rules
-    ├── project_goals.md              # What you're building & why
-    ├── project_*.md                   # Active projects & status
-    ├── reference_tools.md            # External tools & services
-    ├── reference_*.md                 # More reference pointers
-    ├── status_current.md             # Latest system state
-    └── system_architecture.md         # How everything connects
-```
+- **Solo founders** — Track products, clients, revenue goals, priorities across sessions
+- **Developers** — Maintain architecture decisions, codebase conventions, debugging playbooks
+- **Content creators** — Preserve brand voice, audience rules, platform-specific guidelines
+- **Freelancers** — Keep per-client context, deliverables, communication preferences
+- **Researchers** — Organize sources, methodology, findings, open questions
+- **Teams** — Share memory templates via git for consistent AI context
 
 ---
 
 ## Memory Types
 
-### 1. User Memory
-Who you are. Your role, skills, preferences, communication style.
+### 1. User
+Who you are. Role, skills, preferences, communication style.
 
 ```markdown
 ---
@@ -73,16 +67,15 @@ description: User background, role, preferences
 type: user
 ---
 
-- Role: Solo founder, non-engineering background
+- Role: Solo founder
 - Tools: Mac mini M4, Claude Code, VS Code
-- Language: Traditional Chinese for communication
-- Experience: 8 months building with AI
+- Language: Traditional Chinese for chat, English for code
 ```
 
-**Why it matters:** Claude treats a senior engineer differently from a first-time builder. User memory makes every response calibrated to you.
+Claude's auto memory stores code preferences. User memory adds **who you are** — so Claude calibrates responses to your experience level and working style.
 
-### 2. Feedback Memory
-Your corrections AND confirmations. What to stop doing, what to keep doing.
+### 2. Feedback
+Your corrections and confirmations. What to stop, what to keep.
 
 ```markdown
 ---
@@ -93,97 +86,73 @@ type: feedback
 
 Deliver quality over speed — check your own work before sending.
 
-**Why:** User got burned by sloppy output that looked done but had issues.
-**How to apply:** Before delivering anything, ask yourself "would the user be satisfied seeing this?"
+**Why:** Sloppy output that looked done but had issues eroded trust.
+**How to apply:** Before delivering, ask "would the user be satisfied seeing this?"
 ```
 
-**Why it matters:** Without feedback memory, you correct the same mistake every session. With it, the AI learns once and remembers forever.
+The **Why + How to Apply** pattern is the key difference. Native memory might note "user prefers quality" — but without the reason and application rule, Claude can't judge edge cases.
 
-### 3. Project Memory
-Active work, goals, decisions, context for anything you're building.
+### 3. Project
+Active work, goals, decisions, business context.
 
 ```markdown
 ---
 name: Product Goals
-description: Current products, targets, direction
+description: Current products, priorities, direction
 type: project
 ---
 
 ## Products
 - Product A: Live, 500+ users
-- Product B: MVP, first paying client
-- Product C: In development
+- Product B: MVP, onboarding first 10 customers
 
 ## Current Priority
-- Ship Product B to first 10 customers
-- Fix the onboarding drop-off in Product A
-
-**Why:** All decisions should align with current priorities.
-**How to apply:** Suggest work that moves the needle on active goals. Flag scope creep.
+Ship Product B. Fix onboarding drop-off in Product A.
 ```
 
-**Why it matters:** Claude understands the big picture. It won't suggest spending a week on a nice-to-have when you need to ship.
+Native memory captures technical patterns. Project memory adds **business context** — goals, client info, strategic decisions that shape what Claude should prioritize.
 
-### 4. Reference Memory
-Where things are. External tools, services, accounts, URLs, APIs.
+### 4. Reference
+Where things are. Tools, services, APIs, accounts.
 
 ```markdown
 ---
 name: Dev Stack
-description: Tools and services used in this project
+description: Tools and services for this project
 type: reference
 ---
 
 - Database: Supabase (project: xxx)
 - Hosting: Vercel
 - Auth: NextAuth + LINE Login
-- Image CDN: Cloudinary
 - CI/CD: GitHub Actions
 ```
 
-**Why it matters:** Claude doesn't waste time searching for things it already knows the location of.
+Saves Claude from rediscovering your stack every session. Especially useful when you have multiple services, APIs, or tools with specific configurations.
 
 ---
 
-## How It Works
+## Architecture
 
-### Boot Sequence
-1. New session starts → Claude reads `CLAUDE.md`
-2. `CLAUDE.md` tells it to read `MEMORY.md` (the index)
-3. Claude scans index, loads relevant memories for current context
-4. Claude operates with full context of who you are, what you're building, and how you work
-
-### Learning Loop
-1. You correct Claude → it saves a **feedback** memory
-2. You share a new goal → it saves a **project** memory
-3. You mention a tool → it saves a **reference** memory
-4. Next session → Claude reads these and doesn't repeat mistakes
-
-### Memory Index (MEMORY.md)
-The index is always loaded. It contains only links and one-line descriptions — never the actual content. This keeps context small while making everything findable.
-
-```markdown
-# Memory Index
-
-## User
-- [user_profile.md](user_profile.md) - Role, preferences, background
-
-## Feedback
-- [feedback_quality.md](feedback_quality.md) - Quality over speed
-- [feedback_communication.md](feedback_communication.md) - Communication rules
-
-## Projects
-- [project_goals.md](project_goals.md) - Active products, priorities
-
-## References
-- [reference_tools.md](reference_tools.md) - Dev stack and services
 ```
+~/.claude/
+├── CLAUDE.md                          # Your instructions (native feature)
+└── projects/-/memory/                 # Auto memory directory (native feature)
+    ├── MEMORY.md                      # Index — links + one-line descriptions
+    ├── user_profile.md                # [Framework] Who you are
+    ├── feedback_*.md                  # [Framework] Corrections & confirmations
+    ├── project_*.md                   # [Framework] Business context & goals
+    ├── reference_*.md                 # [Framework] Tools & services
+    └── (other auto-memory files)      # [Native] Claude's own notes
+```
+
+The framework coexists with native auto memory. Claude's own notes stay alongside your structured files.
 
 ---
 
 ## Quick Start
 
-### 1. Create the memory directory
+### 1. Create the memory directory (if it doesn't exist)
 
 ```bash
 mkdir -p ~/.claude/projects/-/memory
@@ -196,32 +165,30 @@ git clone https://github.com/HUANGCHIHHUNGLeo/claude-memory-framework.git
 cp claude-memory-framework/templates/* ~/.claude/projects/-/memory/
 ```
 
-### 3. Edit CLAUDE.md
+### 3. Add boot instructions to CLAUDE.md
 
-Add this to your `~/.claude/CLAUDE.md`:
+Add to your `~/.claude/CLAUDE.md`:
 
 ```markdown
-## Boot Sequence
+## Memory
 
-Every session, read these first:
-1. Read: ~/.claude/projects/-/memory/MEMORY.md
-2. Load relevant memories based on current task
+On session start, read ~/.claude/projects/-/memory/MEMORY.md and load relevant memories for the current task.
 ```
 
-### 4. Customize your memories
+### 4. Customize
 
 Edit the template files to match your situation:
 - `user_profile.md` — your role and preferences
 - `project_goals.md` — what you're building
 - `reference_tools.md` — your tools and services
 
-### 5. Start a session
+### 5. Use it
 
-Claude will automatically read your memories and operate with full context.
+Claude reads the index, loads what's relevant, and operates with your structured context. When you correct Claude, tell it to save a feedback memory. When goals change, update the project file.
 
 ---
 
-## Templates Included
+## Templates
 
 ```
 templates/
@@ -237,72 +204,62 @@ templates/
 
 ---
 
-## Advanced Usage
-
-### Identity System
-Define who your AI is in `CLAUDE.md`. Not just rules — give it a role, core principles, and a relationship to you. This changes how Claude approaches every task.
-
-### Scheduling & Automation
-Combine with Claude Code's cron system for autonomous behavior:
-- Periodic status reports
-- Automated health checks
-- Scheduled task execution
-- Regular memory checkpoints
-
-### Multi-Project Management
-Use separate memory directories per project, or shared global memories that apply everywhere. The index pattern scales from one project to dozens.
-
-### Team Collaboration
-Share memory files through git. New team members (human or AI) get onboarded instantly by reading the memory index. Everyone starts with the same context.
+## Advanced
 
 ### Extension Points
-The framework is designed to be extended. Common additions:
-- `playbook_*.md` — domain-specific rules and strategies
-- `status_*.md` — overnight or handoff state
+The four core types cover most needs. Common additions:
+- `playbook_*.md` — domain-specific strategies and rules
+- `status_*.md` — handoff state between sessions or people
 - `experiment_*.md` — A/B test results and learnings
 - `client_*.md` — per-client context for freelancers
 
+### Team Use
+Share templates via git. Everyone starts with the same structured context. Individual feedback memories stay personal; project and reference memories are shared.
+
+### Multi-Project
+Use project-scoped memory directories (`~/.claude/projects/<project>/memory/`) for project-specific context, and global memory (`~/.claude/projects/-/memory/`) for cross-project preferences.
+
 ---
 
-## Real Results
+## How This Compares
 
-This system powers [@kanisleo328](https://www.instagram.com/kanisleo328):
-- 3 products built and maintained with zero coding background
-- All development, deployment, and project management handled through Claude Code with persistent memory
-- 19,000+ views on a single post driven by content created with this workflow
-- First paying client acquired and managed through AI-powered workflow
+**vs. Native auto memory alone:** You get categorization, frontmatter metadata, explicit feedback loops, and human-curated indexing instead of AI-decided structure.
+
+**vs. Obsidian + Claude setups:** No extra software needed. Works inside Claude Code natively. Plain markdown files, no plugins or bridges.
+
+**vs. Vector-based memory systems (Durafen, HMLR):** Much simpler. No database, no embeddings, no infrastructure. Just organized markdown files. The tradeoff: no semantic search, but Claude's built-in file reading handles the lookup.
+
+**vs. Session lifecycle managers (cog, atlas):** Complementary. Those focus on session handoff and state management. This focuses on what knowledge persists and how it's structured.
 
 ---
 
 ## Philosophy
 
-> Memory is what turns a chatbot into a teammate.
+> The best memory system is one you actually maintain.
 
-Without memory, every session starts from zero. You re-explain yourself, re-state your goals, re-correct the same behaviors. It's like hiring someone new every day.
-
-With this framework, Claude Code becomes something else — an AI that knows your work, respects your preferences, learns from its mistakes, and gets better over time.
+Complex memory architectures with vector databases and embedding pipelines sound impressive but add friction. This framework uses plain markdown because it's easy to read, edit, review, and version control. If you stop maintaining it, the files are still readable. If Claude's auto memory improves, the templates still add value as a human-curated layer.
 
 ---
 
 ## Contributing
 
-Found a better way to structure memories? Open a PR. This framework evolves the same way the memories do — through feedback.
+Found a better way to structure memories? Open a PR.
 
 ---
 
 ## License
 
-MIT — use it however you want.
+MIT
 
 ---
 
 ## Links
 
 - [LeoAIdo](https://leoaido.com) — Products, free resources, and guides
-- [Vibe Coding Guide](https://leoaido.com/vibecoding/) — 7 tips from Anthropic's official docs
-- [gstack Guide](https://leoaido.com/gstack/) — Claude Code skill pack installation
-- [Threads @kanisleo328](https://www.threads.net/@kanisleo328) — AI insights & one-person company journey
+- [Memory Framework Guide](https://leoaido.com/memory/) — Visual guide (Chinese)
+- [gstack Guide](https://leoaido.com/gstack/) — Claude Code skill pack
+- [Threads @kanisleo328](https://www.threads.net/@kanisleo328) — AI insights & building in public
 
 ---
 
-Built with Claude Code by [Leo Huang (黃志弘)](https://leoaido.com) — One-person company + AI team.
+Built with Claude Code by [Leo Huang (黃志弘)](https://leoaido.com)
