@@ -12,7 +12,7 @@ Built by [@kanisleo328](https://www.threads.net/@kanisleo328) — running a one-
 
 ## What Makes This Different
 
-Every other Claude Code memory repo focuses on **coding assistance**. This one is for running a **business**.
+Every other Claude Code memory repo focuses on **coding assistance**. This one treats Claude as a **long-term collaborator** — not just a code generator.
 
 | Feature | Others | This Framework |
 |---------|--------|----------------|
@@ -21,11 +21,22 @@ Every other Claude Code memory repo focuses on **coding assistance**. This one i
 | Identity & persona | ❌ | ✅ AI knows who it is |
 | User profile & preferences | ❌ | ✅ Adapts to you |
 | Feedback-driven evolution | ❌ | ✅ Learns from corrections |
-| Business context | ❌ | ✅ Goals, clients, revenue |
-| Multi-platform management | ❌ | ✅ Social, content, deploy |
-| Scheduling & autonomy | ❌ | ✅ Cron, reports, routines |
-| Tool orchestration | ❌ | ✅ Which tool does what |
+| Project & business context | ❌ | ✅ Goals, decisions, progress |
+| Tool & service registry | ❌ | ✅ Remembers your stack |
 | Indexed & categorized | ❌ | ✅ Fast lookup, no bloat |
+
+---
+
+## Use Cases
+
+This framework works for anyone using Claude Code beyond one-off tasks:
+
+- **Solo founders** — Claude remembers your products, clients, revenue goals, and priorities
+- **Developers** — Claude remembers your codebase conventions, past debugging sessions, and architecture decisions
+- **Content creators** — Claude remembers your brand voice, audience, publishing schedule, and platform rules
+- **Freelancers** — Claude remembers each client's context, deliverables, and communication preferences
+- **Researchers** — Claude remembers your sources, methodology, findings, and open questions
+- **Teams** — Shared memory files let multiple people onboard Claude with the same context
 
 ---
 
@@ -63,7 +74,7 @@ type: user
 ---
 
 - Role: Solo founder, non-engineering background
-- Tools: Mac mini M4, Claude Code, Telegram
+- Tools: Mac mini M4, Claude Code, VS Code
 - Language: Traditional Chinese for communication
 - Experience: 8 months building with AI
 ```
@@ -89,12 +100,12 @@ Deliver quality over speed — check your own work before sending.
 **Why it matters:** Without feedback memory, you correct the same mistake every session. With it, the AI learns once and remembers forever.
 
 ### 3. Project Memory
-Active work, goals, decisions, client info, business context.
+Active work, goals, decisions, context for anything you're building.
 
 ```markdown
 ---
 name: Product Goals
-description: Current products, revenue targets, business direction
+description: Current products, targets, direction
 type: project
 ---
 
@@ -103,30 +114,31 @@ type: project
 - Product B: MVP, first paying client
 - Product C: In development
 
-## Revenue Target
-- Q2: NT$30K/month
-- 3-year: $10M USD
+## Current Priority
+- Ship Product B to first 10 customers
+- Fix the onboarding drop-off in Product A
 
-**Why:** All decisions should move toward revenue and product-market fit.
-**How to apply:** Prioritize work that directly generates revenue or grows user base.
+**Why:** All decisions should align with current priorities.
+**How to apply:** Suggest work that moves the needle on active goals. Flag scope creep.
 ```
 
-**Why it matters:** Claude understands the big picture. It won't suggest spending a week on a nice-to-have when you need to close a client.
+**Why it matters:** Claude understands the big picture. It won't suggest spending a week on a nice-to-have when you need to ship.
 
 ### 4. Reference Memory
-Where things are. External tools, services, accounts, URLs.
+Where things are. External tools, services, accounts, URLs, APIs.
 
 ```markdown
 ---
-name: Local Tools
-description: Tools and services running on local machine
+name: Dev Stack
+description: Tools and services used in this project
 type: reference
 ---
 
-- Image generation API: localhost:5100
-- Voice synthesis: ChatTTS (seed=50)
-- Content management: localhost:3001
-- Browser automation: CDP on port 9222
+- Database: Supabase (project: xxx)
+- Hosting: Vercel
+- Auth: NextAuth + LINE Login
+- Image CDN: Cloudinary
+- CI/CD: GitHub Actions
 ```
 
 **Why it matters:** Claude doesn't waste time searching for things it already knows the location of.
@@ -161,10 +173,10 @@ The index is always loaded. It contains only links and one-line descriptions —
 - [feedback_communication.md](feedback_communication.md) - Communication rules
 
 ## Projects
-- [project_goals.md](project_goals.md) - Revenue targets, active products
+- [project_goals.md](project_goals.md) - Active products, priorities
 
 ## References
-- [reference_tools.md](reference_tools.md) - Local services and APIs
+- [reference_tools.md](reference_tools.md) - Dev stack and services
 ```
 
 ---
@@ -218,47 +230,47 @@ templates/
 ├── user_profile.md              # User profile template
 ├── feedback_communication.md    # Communication rules template
 ├── feedback_quality.md          # Quality standards template
-├── project_goals.md             # Business goals template
+├── project_goals.md             # Project goals template
 ├── reference_tools.md           # Tools & services template
 └── system_architecture.md       # System overview template
 ```
 
 ---
 
-## Advanced: One-Person Company Setup
-
-This framework was designed for running a one-person company with AI. Here's the full setup:
+## Advanced Usage
 
 ### Identity System
-Define who your AI is in `CLAUDE.md`. Not just rules — give it a role, principles, and a relationship to you.
+Define who your AI is in `CLAUDE.md`. Not just rules — give it a role, core principles, and a relationship to you. This changes how Claude approaches every task.
 
-### Scheduling
-Use Claude Code's cron system for autonomous behavior:
-- Morning reports
-- Content scheduling
-- Periodic learning and analysis
-- Health checks
+### Scheduling & Automation
+Combine with Claude Code's cron system for autonomous behavior:
+- Periodic status reports
+- Automated health checks
+- Scheduled task execution
+- Regular memory checkpoints
 
-### Multi-Platform Content
-Manage multiple social accounts with platform-specific rules:
-- Different tone per platform
-- Posting schedules
-- Engagement strategies
-- Analytics tracking
+### Multi-Project Management
+Use separate memory directories per project, or shared global memories that apply everywhere. The index pattern scales from one project to dozens.
 
-### Client Management
-Track client relationships, quotes, deliverables in project memories. Claude remembers every conversation context.
+### Team Collaboration
+Share memory files through git. New team members (human or AI) get onboarded instantly by reading the memory index. Everyone starts with the same context.
+
+### Extension Points
+The framework is designed to be extended. Common additions:
+- `playbook_*.md` — domain-specific rules and strategies
+- `status_*.md` — overnight or handoff state
+- `experiment_*.md` — A/B test results and learnings
+- `client_*.md` — per-client context for freelancers
 
 ---
 
 ## Real Results
 
 This system powers [@kanisleo328](https://www.instagram.com/kanisleo328):
-- 3 products built in 8 months with zero coding background
-- Automated social media posting across Threads, IG, Facebook
-- 16,000+ views on a single Threads post
-- 199 unique visitors to personal site in one day from organic content
-- First paying client acquired through AI-powered workflow
+- 3 products built and maintained in 8 months with zero coding background
+- All development, deployment, and project management handled through Claude Code with persistent memory
+- 19,000+ views on a single post driven by content created with this workflow
+- First paying client acquired and managed through AI-powered workflow
 
 ---
 
@@ -268,7 +280,7 @@ This system powers [@kanisleo328](https://www.instagram.com/kanisleo328):
 
 Without memory, every session starts from zero. You re-explain yourself, re-state your goals, re-correct the same behaviors. It's like hiring someone new every day.
 
-With this framework, Claude Code becomes something else — an AI that knows your business, respects your preferences, learns from its mistakes, and gets better over time.
+With this framework, Claude Code becomes something else — an AI that knows your work, respects your preferences, learns from its mistakes, and gets better over time.
 
 ---
 
