@@ -2,11 +2,11 @@
 
 [繁體中文](README.zh-TW.md) | English
 
-**Structured templates for Claude Code's auto memory system.**
+**Turn Claude Code into your business assistant — no coding required.**
 
-Claude Code already has persistent memory — `CLAUDE.md` for instructions, auto memory for AI-written notes, and session resume. What it doesn't have is a **structure** for that memory.
+Engineers have [everything-claude-code](https://github.com/affaan-m/everything-claude-code) with 27 agents and 64 skills. This framework is for everyone else — small business owners, freelancers, content creators, and solo founders who want AI to remember their business, not just their code.
 
-The built-in auto memory lets Claude write whatever it wants, however it wants. This framework gives it a defined taxonomy: **User, Feedback, Project, Reference** — with YAML frontmatter, an index pattern, and templates you can customize.
+Claude Code already has persistent memory, but it only remembers code patterns. This framework adds **business memory** — your clients, your content strategy, your pricing decisions, your lessons learned. Structured templates that anyone can fill in, no programming needed.
 
 Built by [@kanisleo328](https://www.threads.net/@kanisleo328). This is the system behind [LeoAIdo](https://leoaido.com).
 
@@ -192,14 +192,19 @@ Claude reads the index, loads what's relevant, and operates with your structured
 
 ```
 templates/
-├── MEMORY.md                    # Index template
+├── MEMORY.md                    # Index — links to all memories
 ├── CLAUDE.md.example            # Boot instructions example
-├── user_profile.md              # User profile template
-├── feedback_communication.md    # Communication rules template
-├── feedback_quality.md          # Quality standards template
-├── project_goals.md             # Project goals template
-├── reference_tools.md           # Tools & services template
-└── system_architecture.md       # System overview template
+├── soul.md                      # 🆕 Core principles & AI identity
+├── user_profile.md              # Who you are
+├── feedback_communication.md    # Communication rules
+├── feedback_quality.md          # Quality standards
+├── business_playbook.md         # 🆕 Business rules & lessons learned
+├── project_goals.md             # Goals & priorities
+├── client_template.md           # 🆕 Client management (copy per client)
+├── content_schedule.md          # 🆕 Content & social media schedule
+├── status_handoff.md            # 🆕 Session handoff & daily status
+├── reference_tools.md           # Tools & services
+└── system_architecture.md       # System overview
 ```
 
 ---
