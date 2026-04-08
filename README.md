@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".github/social-preview.png" alt="Claude Memory Framework — Give Claude Code a brain that remembers your business" width="100%">
+</p>
+
 # Claude Memory Framework
 
 [繁體中文](README.zh-TW.md) | English
